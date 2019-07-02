@@ -6,23 +6,23 @@
         xmlns:local="clr-namespace:AutoLiveUp"
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="AutoLiveUp.MainWindow"
         mc:Ignorable="d"
-        Title="Auto LiveUp" Height="200" Width="300" ResizeMode="NoResize">
+        Title="Auto LiveUp" Height="167.164" Width="272.388" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="73*"/>
-            <ColumnDefinition Width="74*"/>
+            <ColumnDefinition Width="143*"/>
+            <ColumnDefinition Width="124*"/>
         </Grid.ColumnDefinitions>
         <Label Content="Choose key combination for refresh session:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="26" Width="243"/>
-        <ComboBox x:Name="ComboBox_CombinationKey" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="267" Grid.ColumnSpan="2" SelectionChanged="ComboBox_CombinationKey_SelectionChanged" IsReadOnly="True" Height="22" SelectedIndex="0">
-            <System:String>Space (Default)</System:String>
-            <System:String>Ctrl</System:String>
+        <ComboBox x:Name="ComboBox_CombinationKey" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="238" Grid.ColumnSpan="2" SelectionChanged="ComboBox_CombinationKey_SelectionChanged" IsReadOnly="True" Height="22" SelectedIndex="0">
+            <System:String>Ctrl (Default)</System:String>
+            <System:String>Backspace</System:String>
             <System:String>Shift</System:String>
             <System:String>Numlock</System:String>
             <System:String>Capslock</System:String>
             <System:String>Alt+Tab</System:String>
         </ComboBox>
         <Label Content="Set timeout for refresh:" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Height="26" Width="132"/>
-        <ComboBox x:Name="ComboBox_RefreshTimeout" HorizontalAlignment="Left" Margin="14,70,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1" SelectionChanged="ComboBox_RefreshTimeout_SelectionChanged" Height="22" SelectedIndex="2">
+        <ComboBox x:Name="ComboBox_RefreshTimeout" HorizontalAlignment="Left" Margin="1.5,70,0,0" VerticalAlignment="Top" Width="108" SelectionChanged="ComboBox_RefreshTimeout_SelectionChanged" Height="22" SelectedIndex="2" Grid.Column="1">
             <System:String>30 sec</System:String>
             <System:String>1 min</System:String>
             <System:String>3 min (Default)</System:String>
@@ -33,8 +33,8 @@
             <System:String>30 min</System:String>
             <System:String>1 hour</System:String>
         </ComboBox>
-        <Button x:Name="Button_Start" Content="Start" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Width="75" Click="Button_Start_Click" Height="20"/>
-        <Button x:Name="Button_Stop" Content="Stop" HorizontalAlignment="Left" Margin="59,134,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="Button_Stop_Click" Height="20"/>
+        <Button x:Name="Button_Start" Content="Start" HorizontalAlignment="Left" Margin="10,104,0,0" VerticalAlignment="Top" Width="75" Click="Button_Start_Click" Height="20"/>
+        <Button x:Name="Button_Stop" Content="Stop" HorizontalAlignment="Left" Margin="29.5,104,0,0" VerticalAlignment="Top" Width="80" Grid.Column="1" Click="Button_Stop_Click" Height="20"/>
 
     </Grid>
 </Window>
