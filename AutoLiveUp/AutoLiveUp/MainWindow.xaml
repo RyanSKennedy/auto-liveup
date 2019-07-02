@@ -15,11 +15,10 @@
         <Label Content="Choose key combination for refresh session:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="26" Width="243"/>
         <ComboBox x:Name="ComboBox_CombinationKey" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="238" Grid.ColumnSpan="2" SelectionChanged="ComboBox_CombinationKey_SelectionChanged" IsReadOnly="True" Height="22" SelectedIndex="0">
             <System:String>Ctrl (Default)</System:String>
-            <System:String>Backspace</System:String>
+            <System:String>Space</System:String>
             <System:String>Shift</System:String>
             <System:String>Numlock</System:String>
             <System:String>Capslock</System:String>
-            <System:String>Alt+Tab</System:String>
         </ComboBox>
         <Label Content="Set timeout for refresh:" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Height="26" Width="132"/>
         <ComboBox x:Name="ComboBox_RefreshTimeout" HorizontalAlignment="Left" Margin="1.5,70,0,0" VerticalAlignment="Top" Width="108" SelectionChanged="ComboBox_RefreshTimeout_SelectionChanged" Height="22" SelectedIndex="2" Grid.Column="1">
@@ -34,7 +33,7 @@
             <System:String>1 hour</System:String>
         </ComboBox>
         <Button x:Name="Button_Start" Content="Start" HorizontalAlignment="Left" Margin="10,104,0,0" VerticalAlignment="Top" Width="75" Click="Button_Start_Click" Height="20"/>
-        <Button x:Name="Button_Stop" Content="Stop" HorizontalAlignment="Left" Margin="29.5,104,0,0" VerticalAlignment="Top" Width="80" Grid.Column="1" Click="Button_Stop_Click" Height="20"/>
+        <Button x:Name="Button_Stop" Content="Stop" HorizontalAlignment="Left" Margin="29.5,104,0,0" VerticalAlignment="Top" Width="80" Grid.Column="1" Click="Button_Stop_Click" Height="20" IsEnabled="False"/>
 
     </Grid>
 </Window>
