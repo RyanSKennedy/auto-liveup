@@ -129,7 +129,7 @@ namespace AutoLiveUp
 
             // Initialize subMenuItemRefreshTime_3min
             this.subMenuItemRefreshTime_3min.Index = 2;
-            this.subMenuItemRefreshTime_3min.Text = "3 min (Default)";
+            this.subMenuItemRefreshTime_3min.Text = "*3 min (Default)";
             this.subMenuItemRefreshTime_3min.Click += new System.EventHandler(this.SubMenuItemRefreshTime_Click);
 
             // Initialize subMenuItemRefreshTime_5min
@@ -176,7 +176,7 @@ namespace AutoLiveUp
 
             // Initialize subItemMenuRefreshControl_Ctrl
             this.subMenuItemRefreshControl_Ctrl.Index = 0;
-            this.subMenuItemRefreshControl_Ctrl.Text = "Ctrl (Default)";
+            this.subMenuItemRefreshControl_Ctrl.Text = "*Ctrl (Default)";
             this.subMenuItemRefreshControl_Ctrl.Click += new System.EventHandler(this.SubMenuItemRefreshControl_Click);
 
             // Initialize subMenuItemRefreshControl_Space
@@ -267,7 +267,7 @@ namespace AutoLiveUp
 
         private void SubMenuItemRefreshControl_Click(object Sender, EventArgs e)
         {
-            // Set Refresh control.
+            // Set Refresh control
             var tmpIndex = Sender.ToString().IndexOf("Text: ") + "Text: ".Length;
             var tmpLenght = Sender.ToString().Length - tmpIndex;
             var tmpVal = Sender.ToString().Substring(tmpIndex, tmpLenght);
@@ -316,12 +316,40 @@ namespace AutoLiveUp
 
         private void ComboBox_RefreshControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (e.RemovedItems.Count > 0)
+            {
+                var v = e.RemovedItems[0].ToString();
+                var k = ComboBox_RefreshControl.Items.IndexOf(v);
+                this.menuItemRefreshControl.MenuItems[k].Text = this.menuItemRefreshControl.MenuItems[k].Text.Replace("*", "");
+            }
+            
             RefreshControl_Change(e.AddedItems[0].ToString());
+
+            if (e.RemovedItems.Count > 0)
+            {
+                var v = e.AddedItems[0].ToString();
+                var k = ComboBox_RefreshControl.Items.IndexOf(v);
+                this.menuItemRefreshControl.MenuItems[k].Text = "*" + this.menuItemRefreshControl.MenuItems[k].Text;
+            }
         }
 
         private void ComboBox_RefreshTimeout_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (e.RemovedItems.Count > 0)
+            {
+                var v = e.RemovedItems[0].ToString();
+                var k = ComboBox_RefreshTimeout.Items.IndexOf(v);
+                this.menuItemRefreshTime.MenuItems[k].Text = this.menuItemRefreshTime.MenuItems[k].Text.Replace("*", "");
+            }
+
             RefreshTime_Change(e.AddedItems[0].ToString());
+
+            if (e.RemovedItems.Count > 0)
+            {
+                var v = e.AddedItems[0].ToString();
+                var k = ComboBox_RefreshTimeout.Items.IndexOf(v);
+                this.menuItemRefreshTime.MenuItems[k].Text = "*" + this.menuItemRefreshTime.MenuItems[k].Text;
+            }
         }
 
         /// <summary>
