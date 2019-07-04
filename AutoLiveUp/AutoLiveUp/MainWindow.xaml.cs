@@ -39,11 +39,10 @@ namespace AutoLiveUp
         private System.ComponentModel.IContainer components;
         globalKeyboardHook gkh = new globalKeyboardHook();
         public DispatcherTimer dispatcherTimer;
-        public Key refreshControl = Key.LeftCtrl;
+        public string refreshControl = "{NUMLOCK}";
         public int refreshTime = 180000;
         public static int i = 0;
         #endregion
-
 
         public MainWindow()
         {
@@ -167,32 +166,32 @@ namespace AutoLiveUp
             this.menuItemRefreshControl.Text = "Refresh control";
             this.menuItemRefreshControl.MenuItems.AddRange(
                         new System.Windows.Forms.MenuItem[] {
+                            this.subMenuItemRefreshControl_Numlock,
                             this.subMenuItemRefreshControl_Ctrl,
                             this.subMenuItemRefreshControl_Space,
                             this.subMenuItemRefreshControl_Shift,
-                            this.subMenuItemRefreshControl_Numlock,
                             this.subMenuItemRefreshControl_Capslock
                         });
 
+            // Initialize subMenuItemRefreshControl_Numlock
+            this.subMenuItemRefreshControl_Numlock.Index = 0;
+            this.subMenuItemRefreshControl_Numlock.Text = "*Numlock (Default)";
+            this.subMenuItemRefreshControl_Numlock.Click += new System.EventHandler(this.SubMenuItemRefreshControl_Click);
+            
             // Initialize subItemMenuRefreshControl_Ctrl
-            this.subMenuItemRefreshControl_Ctrl.Index = 0;
-            this.subMenuItemRefreshControl_Ctrl.Text = "*Ctrl (Default)";
+            this.subMenuItemRefreshControl_Ctrl.Index = 1;
+            this.subMenuItemRefreshControl_Ctrl.Text = "Ctrl";
             this.subMenuItemRefreshControl_Ctrl.Click += new System.EventHandler(this.SubMenuItemRefreshControl_Click);
 
             // Initialize subMenuItemRefreshControl_Space
-            this.subMenuItemRefreshControl_Space.Index = 1;
+            this.subMenuItemRefreshControl_Space.Index = 2;
             this.subMenuItemRefreshControl_Space.Text = "Space";
             this.subMenuItemRefreshControl_Space.Click += new System.EventHandler(this.SubMenuItemRefreshControl_Click);
 
             // Initialize subMenuItemRefreshControl_Shift
-            this.subMenuItemRefreshControl_Shift.Index = 2;
+            this.subMenuItemRefreshControl_Shift.Index = 3;
             this.subMenuItemRefreshControl_Shift.Text = "Shift";
             this.subMenuItemRefreshControl_Shift.Click += new System.EventHandler(this.SubMenuItemRefreshControl_Click);
-
-            // Initialize subMenuItemRefreshControl_Numlock
-            this.subMenuItemRefreshControl_Numlock.Index = 3;
-            this.subMenuItemRefreshControl_Numlock.Text = "Numlock";
-            this.subMenuItemRefreshControl_Numlock.Click += new System.EventHandler(this.SubMenuItemRefreshControl_Click);
 
             // Initialize subMenuItemRefreshControl_Capslock
             this.subMenuItemRefreshControl_Capslock.Index = 4;
@@ -352,52 +351,32 @@ namespace AutoLiveUp
             }
         }
 
-        /// <summary>
-        ///   Sends the specified key.
-        /// </summary>
-        /// <param name="key">The key</param>
-        public static void Send(Key key)
+        public static void Send(string key)
         {
-            //KeyEventArgs kea = new KeyEventArgs(Keyboard.PrimaryDevice, new HwndSource(0, 0, 0, 0, 0, "", IntPtr.Zero), 0, key);
-
-            if (Keyboard.PrimaryDevice != null)
+            if (key == "{NUMLOCK}" || key == "{CAPSLOCK}")
             {
-                //if (Keyboard.PrimaryDevice.ActiveSource != null)
-                //{
-                    if (key == Key.NumLock || key == Key.CapsLock)
-                    {
-                        //var e = new KeyEventArgs(Keyboard.PrimaryDevice, Keyboard.PrimaryDevice.ActiveSource, 0, key)
-                        var e = new System.Windows.Input.KeyEventArgs(Keyboard.PrimaryDevice, new HwndSource(0, 0, 0, 0, 0, "", IntPtr.Zero), 0, key)
-                        {
-                            RoutedEvent = Keyboard.KeyDownEvent
-                        };
+                try
+                {
+                    SendKeys.SendWait(key);
+                }
+                catch (Exception e) { }
+                
+                System.Threading.Thread.Sleep(300);
 
-                        InputManager.Current.ProcessInput(e);
+                try
+                {
+                    SendKeys.SendWait(key);
+                }
+                catch (Exception e) { }
 
-                        //e = new KeyEventArgs(Keyboard.PrimaryDevice, Keyboard.PrimaryDevice.ActiveSource, 0, key)
-                        e = new System.Windows.Input.KeyEventArgs(Keyboard.PrimaryDevice, new HwndSource(0, 0, 0, 0, 0, "", IntPtr.Zero), 0, key)
-                        {
-                            RoutedEvent = Keyboard.KeyDownEvent
-                        };
-
-                        InputManager.Current.ProcessInput(e);
-                    }
-                    else
-                    {
-                        //var e = new KeyEventArgs(Keyboard.PrimaryDevice, Keyboard.PrimaryDevice.ActiveSource, 0, key)
-                        var e = new System.Windows.Input.KeyEventArgs(Keyboard.PrimaryDevice, new HwndSource(0, 0, 0, 0, 0, "", IntPtr.Zero), 0, key)
-                        {
-                            RoutedEvent = Keyboard.KeyDownEvent
-                        };
-
-                        InputManager.Current.ProcessInput(e);
-                    }
-                    
-                    // Note: Based on your requirements you may also need to fire events for:
-                    // RoutedEvent = Keyboard.PreviewKeyDownEvent
-                    // RoutedEvent = Keyboard.KeyUpEvent
-                    // RoutedEvent = Keyboard.PreviewKeyUpEvent
-                //}
+            }
+            else
+            {
+                try
+                {
+                    SendKeys.SendWait(key);
+                }
+                catch (Exception e) { }
             }
         }
 
@@ -405,7 +384,6 @@ namespace AutoLiveUp
         {
             //start the hook 
             gkh.hook();
-            //refreshTime = 3000; // for test
             dispatcherTimer.Start();
 
             Button_Stop.IsEnabled = true;
@@ -478,28 +456,28 @@ namespace AutoLiveUp
         {
             switch (val)
             {
-                case "Ctrl (Default)":
-                    refreshControl = Key.LeftCtrl;
+                case "Numlock (Default)":
+                    refreshControl = "{NUMLOCK}";
+                    break;
+
+                case "Ctrl":
+                    refreshControl = "{^}";
                     break;
 
                 case "Space":
-                    refreshControl = Key.Space;
+                    refreshControl = "{BACKSPACE}";
                     break;
 
                 case "Shift":
-                    refreshControl = Key.LeftShift;
-                    break;
-
-                case "Numlock":
-                    refreshControl = Key.NumLock;
+                    refreshControl = "{+}";
                     break;
 
                 case "Capslock":
-                    refreshControl = Key.CapsLock;
+                    refreshControl = "{CAPSLOCK}";
                     break;
 
                 default:
-                    refreshControl = Key.LeftCtrl;
+                    refreshControl = "{NUMLOCK}";
                     break;
             }
         }

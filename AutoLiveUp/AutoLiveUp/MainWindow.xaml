@@ -14,10 +14,10 @@
         </Grid.ColumnDefinitions>
         <Label Content="Choose key combination for refresh session:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="26" Width="243"/>
         <ComboBox x:Name="ComboBox_RefreshControl" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="238" Grid.ColumnSpan="2" SelectionChanged="ComboBox_RefreshControl_SelectionChanged" IsReadOnly="True" Height="22" SelectedIndex="0">
-            <System:String>Ctrl (Default)</System:String>
+            <System:String>Numlock (Default)</System:String>
+            <System:String>Ctrl</System:String>
             <System:String>Space</System:String>
             <System:String>Shift</System:String>
-            <System:String>Numlock</System:String>
             <System:String>Capslock</System:String>
         </ComboBox>
         <Label Content="Set timeout for refresh:" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" Height="26" Width="132"/>
