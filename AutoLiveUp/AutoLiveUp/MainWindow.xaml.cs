@@ -316,32 +316,7 @@ namespace AutoLiveUp
 
         private void ComboBox_RefreshControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            switch (ComboBox_RefreshControl.SelectedValue.ToString())
-            {
-                case "Ctrl (Default)":
-                    refreshControl = Key.LeftCtrl;
-                    break;
-
-                case "Space":
-                    refreshControl = Key.Space;
-                    break;
-
-                case "Shift":
-                    refreshControl = Key.LeftShift;
-                    break;
-
-                case "Numlock":
-                    refreshControl = Key.NumLock;
-                    break;
-                     
-                case "Capslock":
-                    refreshControl = Key.CapsLock;
-                    break;
-
-                default:
-                    refreshControl = Key.LeftCtrl;
-                    break;
-            }
+            RefreshControl_Change(e.AddedItems[0].ToString());
         }
 
         private void ComboBox_RefreshTimeout_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -467,6 +442,36 @@ namespace AutoLiveUp
 
                 default:
                     refreshTime = 180000;
+                    break;
+            }
+        }
+
+        private void RefreshControl_Change(string val)
+        {
+            switch (val)
+            {
+                case "Ctrl (Default)":
+                    refreshControl = Key.LeftCtrl;
+                    break;
+
+                case "Space":
+                    refreshControl = Key.Space;
+                    break;
+
+                case "Shift":
+                    refreshControl = Key.LeftShift;
+                    break;
+
+                case "Numlock":
+                    refreshControl = Key.NumLock;
+                    break;
+
+                case "Capslock":
+                    refreshControl = Key.CapsLock;
+                    break;
+
+                default:
+                    refreshControl = Key.LeftCtrl;
                     break;
             }
         }
