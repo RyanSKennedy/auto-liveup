@@ -205,6 +205,7 @@ namespace AutoLiveUp
             notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             notifyIcon.Icon = Properties.Resources.AutoLiveUp_logo;
             notifyIcon.Visible = true;
+            notifyIcon.Text = "Status: Stopped";
             notifyIcon.DoubleClick +=
                 delegate (object sender, EventArgs args)
                 {
@@ -219,13 +220,14 @@ namespace AutoLiveUp
                     }
                 };
 
+
             // Handle the Click event to activate the form.
             notifyIcon.Click += new System.EventHandler(this.NotifyIcon_Click);
 
             // The ContextMenu property sets the menu that will
             // appear when the systray icon is right clicked.
             notifyIcon.ContextMenu = this.TrayMenu;
-
+            
             //  DispatcherTimer setup
             // Timer using for background checking activity
             dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
@@ -400,6 +402,8 @@ namespace AutoLiveUp
 
             menuItemRefreshControl.Enabled = false;
             menuItemRefreshTime.Enabled = false;
+
+            notifyIcon.Text = "Status: Running";
         }
 
         private void Stop_Work()
@@ -419,6 +423,8 @@ namespace AutoLiveUp
 
             menuItemRefreshControl.Enabled = true;
             menuItemRefreshTime.Enabled = true;
+
+            notifyIcon.Text = "Status: Stopped";
         }
 
         private void RefreshTime_Change(string val)
