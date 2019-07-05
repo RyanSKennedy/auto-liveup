@@ -86,6 +86,7 @@ namespace AutoLiveUp
             // Initialize menuItemExit
             this.menuItemExit.Index = 4;
             this.menuItemExit.Text = "E&xit";
+            this.menuItemExit.Enabled = true;
             this.menuItemExit.Click += new System.EventHandler(this.MenuItemExit_Click);
 
             // Initialize menuItemStop
@@ -103,6 +104,7 @@ namespace AutoLiveUp
             // Initialize menuItemRefreshTime
             this.menuItemRefreshTime.Index = 1;
             this.menuItemRefreshTime.Text = "Refresh time";
+            this.menuItemRefreshTime.Enabled = true;
             this.menuItemRefreshTime.MenuItems.AddRange(
                         new System.Windows.Forms.MenuItem[] {
                             this.subMenuItemRefreshTime_30sec,
@@ -164,6 +166,7 @@ namespace AutoLiveUp
             // Initialize menuItemRefreshControl
             this.menuItemRefreshControl.Index = 0;
             this.menuItemRefreshControl.Text = "Refresh control";
+            this.menuItemRefreshControl.Enabled = true;
             this.menuItemRefreshControl.MenuItems.AddRange(
                         new System.Windows.Forms.MenuItem[] {
                             this.subMenuItemRefreshControl_Numlock,
@@ -389,8 +392,14 @@ namespace AutoLiveUp
             Button_Stop.IsEnabled = true;
             Button_Start.IsEnabled = false;
 
+            ComboBox_RefreshControl.IsEnabled = false;
+            ComboBox_RefreshTimeout.IsEnabled = false;
+
             menuItemStart.Enabled = false;
             menuItemStop.Enabled = true;
+
+            menuItemRefreshControl.Enabled = false;
+            menuItemRefreshTime.Enabled = false;
         }
 
         private void Stop_Work()
@@ -402,8 +411,14 @@ namespace AutoLiveUp
             Button_Stop.IsEnabled = false;
             Button_Start.IsEnabled = true;
 
+            ComboBox_RefreshControl.IsEnabled = true;
+            ComboBox_RefreshTimeout.IsEnabled = true;
+
             menuItemStart.Enabled = true;
             menuItemStop.Enabled = false;
+
+            menuItemRefreshControl.Enabled = true;
+            menuItemRefreshTime.Enabled = true;
         }
 
         private void RefreshTime_Change(string val)
